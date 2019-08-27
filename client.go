@@ -92,10 +92,9 @@ func createConnection(url string, user_id string, token string) {
 	ws.SetWriteDeadline(time.Now().Add(30 * time.Second))
 	err = ws.WriteMessage(websocket.TextMessage, message)
 
-	// making sure the user that have even id wont send message if `bukalapak` exist as profanity
 	i, _ := strconv.Atoi(user_id)
 	if(i%2==0) {
-		message = []byte("{\"topic\":\"room:25\", \"event\":\"post\", \"payload\": {\"message\":\"tes bukalapak dari user " + user_id + "\"}, \"ref\": \"1\"}")
+		message = []byte("{\"topic\":\"room:25\", \"event\":\"post\", \"payload\": {\"message\":\"tes gagal dari user " + user_id + "\"}, \"ref\": \"1\"}")
 		ws.SetWriteDeadline(time.Now().Add(30 * time.Second))
 		err = ws.WriteMessage(websocket.TextMessage, message)
 	} else {
